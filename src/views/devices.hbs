@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>model</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#devices}}
+        <tr>
+            <th></th>
+            <td><a href="{{url}}">{{name}}</a></td>
+            <td>
+                <span>{{brandName}} {{productModel}}</span>
+                <img src="{{brandLogoUrl}}" alt="logo" />
+            </td>
+            <td>{{json}}</td>
+        </tr>
+    {{/devices}}
+    </tbody>
+</table>
