@@ -1,8 +1,7 @@
 import {DeviceRepository} from "./deviceRepository";
 
-
-export const deviceRepositoryFactory = (): DeviceRepository => {
-    const devices: any[] = [];
+export const deviceRepositoryFactory = (initialDevicesState: any[]): DeviceRepository => {
+    const devices: any[] = initialDevicesState.length ? initialDevicesState : [];
     return {
         async findOne(id: number): Promise<any> {
             return devices[id];

@@ -1,12 +1,10 @@
 import { DeviceRepository} from "./deviceRepository";
 import {EventEmitter} from "events";
-import {EventRepository} from "../event/eventRepository";
-import {EventType} from "../event/event";
 import {deviceLink} from "./deviceUrls";
 
 
 export interface DeviceService {
-    findOne(id:string): any;
+    findOne(id:any): any;
     findAll(): any;
 }
 
