@@ -2,7 +2,7 @@
 
 ## how to run the project 
 - to install all dependencies run ``npm install``
-- before you run the application make sure to create config.ts file holding your eWeLink credential
+- before you run the application make sure to create src/config.ts file holding your eWeLink credential
 ```const config = {
   ewelink: {
   password: 'x',
