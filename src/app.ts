@@ -19,7 +19,7 @@ export const appFactory = (db: Db) => {
 
   app.use(express.json());
   app.use(function(req, res, next) {
-    eventEmitter.emit('register', req);
+    eventEmitter.emit('register-request', req);
     next();
   });
 

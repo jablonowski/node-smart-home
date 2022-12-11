@@ -13,13 +13,13 @@ export interface DeviceService {
 export const deviceServiceFactory = (deviceRepository: DeviceRepository, eventEmmiter: EventEmitter): DeviceService => ({
   async findOne(id: string) {
       const device = await deviceRepository.findOne(id);
-      eventEmmiter.emit('device found', device);
+      eventEmmiter.emit('device-found', device);
       return device;
   },
 
     async findAll() {
         const devices = await deviceRepository.findAll();
-        eventEmmiter.emit('devices found', devices);
+        eventEmmiter.emit('devices-found', devices);
         devices.map((device: { deviceid: string; }) => ({
             ...device,
             url: deviceLink(device.deviceid),

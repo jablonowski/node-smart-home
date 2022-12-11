@@ -17,7 +17,10 @@ export const eventRoutesFactory = (db: Db, eventEmitter: EventEmitter) => {
   });
 
   router.get(EVENT_COLLECTION, getList);
-  eventEmitter.on('register', eventService.register);
+  eventEmitter.on('register-request', eventService.registerRequest);
+  eventEmitter.on('device-found', eventService.registerDeviceFound);
+  eventEmitter.on('devices-found', eventService.registerDevicesFound);
+
 
   return router;
 };
