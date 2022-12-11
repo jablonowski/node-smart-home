@@ -1,5 +1,5 @@
 import { eventUrls} from "./eventUrls";
-import { eventRepositoryFactory } from "./eventRepository";
+import { eventRepositoryFactory } from "./mongodbEventRepository";
 import { eventServiceFactory } from "./eventService";
 import { Router } from "express";
 import { eventControllerFactory } from "./eventController";

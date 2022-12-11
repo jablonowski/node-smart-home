@@ -47,7 +47,4 @@ export const eventControllerFactory = ({ eventService, eventRepository }: EventC
         },
       });
     },
-    async register(eventData: any) {
-      await eventService.register(eventData);
-    },
   });

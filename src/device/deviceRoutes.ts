@@ -1,5 +1,5 @@
 import { deviceUrls } from "./deviceUrls";
-import { deviceRepositoryFactory } from "./deviceRepository";
+import { deviceRepositoryFactory } from "./ewelinkDeviceRepository";
 import { deviceServiceFactory } from "./deviceService";
 import { Router } from "express";
 import { deviceControllerFactory } from "./deviceController";
