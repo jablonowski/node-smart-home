@@ -39,14 +39,12 @@ export const deviceControllerFactory = ({ deviceService, deviceRepository }: Dev
   withErrorHandling({
     async details(req, res, next) {
       const id = req.params.id;
-      const device = await deviceRepository.findOne(id);
+      // const device = await deviceRepository.findOne(id);
+      const device = await deviceService.findOne(id);
       res.format({
         "text/html"() {
           res.render("device", {
-            device: {
-              ...device, 
-              json: JSON.stringify(device)
-            }, 
+            device: device,
             layout: "layout", 
           });
         },
@@ -59,15 +57,12 @@ export const deviceControllerFactory = ({ deviceService, deviceRepository }: Dev
       });
     },
     async getList(req, res) {
-      const devices = await deviceRepository.findAll();
+      // const devices = await deviceRepository.findAll();
+      const devices = await deviceService.findAll();
       res.format({
         "text/html"() {
           res.render("devices", {
-            devices: devices.map((device) => ({
-              ...device, 
-              url: deviceLink(device.deviceid),
-              json: JSON.stringify(device),
-            })),
+            devices: devices,
             layout: "layout",
           });
         },

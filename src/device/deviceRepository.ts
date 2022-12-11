@@ -1,4 +1,4 @@
-import { Device } from 'ewelink-api';
+import { Device } from 'ewelink-api'; //todo: DeviceDTO -> Device / ACL
 import ewelink from 'ewelink-api';
 import config from './../config';
 
