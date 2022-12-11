@@ -41,12 +41,6 @@ export const deviceControllerFactory = ({ deviceService, deviceRepository }: Dev
       const id = req.params.id;
       const device = await deviceService.findOne(id);
       res.format({
-        "text/html"() {
-          res.render("device", {
-            device: device,
-            layout: "layout", 
-          });
-        },
         "application/json"() {
           res.json(device);
         },
@@ -71,12 +65,6 @@ export const deviceControllerFactory = ({ deviceService, deviceRepository }: Dev
     async getList(req, res) {
       const devices = await deviceService.findAll();
       res.format({
-        "text/html"() {
-          res.render("devices", {
-            devices: devices,
-            layout: "layout",
-          });
-        },
         "application/json"() {
           res.json(devices);
         },

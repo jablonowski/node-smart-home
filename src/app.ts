@@ -12,11 +12,6 @@ export const appFactory = (db: Db) => {
   const deviceRoutes = deviceRoutesFactory(eventEmitter);
   const eventRoutes = eventRoutesFactory(db, eventEmitter);
 
-  const path = require("path");
-
-  app.set("views", path.join(__dirname, "views"));
-  app.set("view engine", "hbs");
-
   app.use(express.json());
   app.use(function(req, res, next) {
     eventEmitter.emit('register-request', req);
