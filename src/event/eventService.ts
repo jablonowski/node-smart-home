@@ -7,6 +7,7 @@ export interface EventService {
     registerRequest(req: Request): void;
     registerDeviceFound(device: Device): void;
     registerDevicesFound(devices: Device[]): void;
+    registerDeviceToggled(data: any): void;
 }
 
 function prepareEventObject(message: string, type: EventType): Event {
@@ -32,6 +33,10 @@ export const eventServiceFactory = (eventRepository: EventRepository): EventServ
             return device.deviceid;
         });
         const message = 'List of devices ' + JSON.stringify(ids) + ' being processed.';
+        await eventRepository.insert(prepareEventObject(message, EventType.PROCESS));
+    },
+    async registerDeviceToggled(data: any) {
+        const message = 'Device ' + data.id + ' on channel '+ data.channel + ' has been toggled.';
         await eventRepository.insert(prepareEventObject(message, EventType.PROCESS));
     },
 });

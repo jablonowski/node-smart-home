@@ -6,6 +6,7 @@ import {deviceLink} from "./deviceUrls";
 export interface DeviceService {
     findOne(id:any): any;
     findAll(): any;
+    toggle(id: any, channel: any): any;
 }
 
 export const deviceServiceFactory = (deviceRepository: DeviceRepository, eventEmmiter: EventEmitter): DeviceService => ({
@@ -24,4 +25,10 @@ export const deviceServiceFactory = (deviceRepository: DeviceRepository, eventEm
         }))
         return devices;
     },
+
+    async toggle(id, channel) {
+        const state = await deviceRepository.toggle(id, channel);
+        eventEmmiter.emit('toggle-device', {id, channel});
+        return state;
+    }
 });

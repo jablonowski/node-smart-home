@@ -20,6 +20,7 @@ export const eventRoutesFactory = (db: Db, eventEmitter: EventEmitter) => {
   eventEmitter.on('register-request', eventService.registerRequest);
   eventEmitter.on('device-found', eventService.registerDeviceFound);
   eventEmitter.on('devices-found', eventService.registerDevicesFound);
+  eventEmitter.on('toggle-device', eventService.registerDeviceToggled);
 
 
   return router;

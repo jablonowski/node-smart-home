@@ -9,5 +9,8 @@ export const deviceRepositoryFactory = (initialDevicesState: any[]): DeviceRepos
         async findAll(): Promise<any[]> {
             return devices;
         },
+        async toggle(id: any, channel: any): Promise<any> {
+            return true;
+        }
     };
 };

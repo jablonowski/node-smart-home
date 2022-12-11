@@ -1,4 +1,4 @@
-import { Device } from 'ewelink-api'; //todo: DeviceDTO -> Device / ACL
+import {Device, DeviceState} from 'ewelink-api'; //todo: DeviceDTO -> Device / ACL
 import ewelink from 'ewelink-api';
 import config from './../config';
 import {DeviceRepository} from "./deviceRepository";
@@ -16,5 +16,9 @@ export const deviceRepositoryFactory = (): DeviceRepository => {
             const devices = await connection.getDevices();
             return devices;
         },
+        async toggle(id, channel): Promise<DeviceState> {
+            const connection = new ewelink(config.ewelink);
+            return await connection.toggleDevice(id, channel);
+        }
     };
 };

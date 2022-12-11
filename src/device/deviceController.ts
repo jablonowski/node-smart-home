@@ -39,7 +39,6 @@ export const deviceControllerFactory = ({ deviceService, deviceRepository }: Dev
   withErrorHandling({
     async details(req, res, next) {
       const id = req.params.id;
-      // const device = await deviceRepository.findOne(id);
       const device = await deviceService.findOne(id);
       res.format({
         "text/html"() {
@@ -56,8 +55,20 @@ export const deviceControllerFactory = ({ deviceService, deviceRepository }: Dev
         },
       });
     },
+    async toggle(req, res, next) {
+      const id = req.params.id;
+      const channel = req.params.channel;
+      const state = await deviceService.toggle(id, channel);
+      res.format({
+        "application/json"() {
+          res.json(state);
+        },
+        default() {
+          res.json(state);
+        },
+      });
+    },
     async getList(req, res) {
-      // const devices = await deviceRepository.findAll();
       const devices = await deviceService.findAll();
       res.format({
         "text/html"() {
