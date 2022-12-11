@@ -1,3 +1,3 @@
 export const eventUrls = {
-  EVENT_COLLECTION: "/event",
+    EVENT_COLLECTION: "/event",
 };

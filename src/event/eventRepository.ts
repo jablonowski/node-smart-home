@@ -1,6 +1,7 @@
-import { Event } from "./event";
+import {Event} from "./event";
 
 export interface EventRepository {
-  findAll(): Promise<Event[] | null>;
-  insert(event: Event): void;
+    findAll(): Promise<Event[] | null>;
+
+    insert(event: Event): void;
 }

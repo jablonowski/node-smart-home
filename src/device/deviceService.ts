@@ -1,20 +1,22 @@
-import { DeviceRepository} from "./deviceRepository";
+import {DeviceRepository} from "./deviceRepository";
 import {EventEmitter} from "events";
 import {deviceLink} from "./deviceUrls";
 
 
 export interface DeviceService {
-    findOne(id:any): any;
+    findOne(id: any): any;
+
     findAll(): any;
+
     toggle(id: any, channel: any): any;
 }
 
 export const deviceServiceFactory = (deviceRepository: DeviceRepository, eventEmmiter: EventEmitter): DeviceService => ({
-  async findOne(id: string) {
-      const device = await deviceRepository.findOne(id);
-      eventEmmiter.emit('device-found', device);
-      return device;
-  },
+    async findOne(id: string) {
+        const device = await deviceRepository.findOne(id);
+        eventEmmiter.emit('device-found', device);
+        return device;
+    },
 
     async findAll() {
         const devices = await deviceRepository.findAll();

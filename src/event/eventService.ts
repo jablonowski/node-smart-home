@@ -5,8 +5,11 @@ import {Device} from "ewelink-api";
 
 export interface EventService {
     registerRequest(req: Request): void;
+
     registerDeviceFound(device: Device): void;
+
     registerDevicesFound(devices: Device[]): void;
+
     registerDeviceToggled(data: any): void;
 }
 
@@ -29,14 +32,14 @@ export const eventServiceFactory = (eventRepository: EventRepository): EventServ
         await eventRepository.insert(prepareEventObject(message, EventType.PROCESS));
     },
     async registerDevicesFound(devices: Device[]) {
-        const ids = devices.map(function(device) {
+        const ids = devices.map(function (device) {
             return device.deviceid;
         });
         const message = 'List of devices ' + JSON.stringify(ids) + ' being processed.';
         await eventRepository.insert(prepareEventObject(message, EventType.PROCESS));
     },
     async registerDeviceToggled(data: any) {
-        const message = 'Device ' + data.id + ' on channel '+ data.channel + ' has been toggled.';
+        const message = 'Device ' + data.id + ' on channel ' + data.channel + ' has been toggled.';
         await eventRepository.insert(prepareEventObject(message, EventType.PROCESS));
     },
 });

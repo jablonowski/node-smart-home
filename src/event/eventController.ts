@@ -9,7 +9,7 @@ import {Request, Response, NextFunction} from "express";
 //   return mapValues(api, wrapWithTryCatch);
 // }
 function withErrorHandling<T extends Record<string, AsyncHandler>>(api: T) {
-  return mapValues(api, wrapWithTryCatch);
+    return mapValues(api, wrapWithTryCatch);
 }
 
 
@@ -20,31 +20,31 @@ type AsyncHandler = (
 ) => Promise<void>;
 
 function wrapWithTryCatch(fn: AsyncHandler): AsyncHandler {
-  return async function (req, res, next) {
-    try {
-      await fn(req, res, next);
-    } catch (e) {
-      next(e);
-    }
-  };
+    return async function (req, res, next) {
+        try {
+            await fn(req, res, next);
+        } catch (e) {
+            next(e);
+        }
+    };
 }
 
 interface EventControllerDeps {
-  eventService: EventService;
-  eventRepository: EventRepository;
+    eventService: EventService;
+    eventRepository: EventRepository;
 }
 
-export const eventControllerFactory = ({ eventService, eventRepository }: EventControllerDeps) =>
-  withErrorHandling({
-    async getList(req, res) {
-      const events = await eventRepository.findAll();
-      res.format({
-        "application/json"() {
-          res.json(events);
+export const eventControllerFactory = ({eventService, eventRepository}: EventControllerDeps) =>
+    withErrorHandling({
+        async getList(req, res) {
+            const events = await eventRepository.findAll();
+            res.format({
+                "application/json"() {
+                    res.json(events);
+                },
+                default() {
+                    res.json(events);
+                },
+            });
         },
-        default() {
-          res.json(events);
-        },
-      });
-    },
-  });
+    });
